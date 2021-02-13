@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: BigBuy
-  version: 'v202102'
+  version: v202102
   description: ''
 servers:
   - url: 'https://api.bigbuy.eu/'
@@ -13,7 +13,15 @@ paths:
     get:
       summary: Your GET endpoint
       tags: []
-      responses: {}
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when category was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
       operationId: get-rest-catalog-categories
       description: Lists all categories
       parameters:
@@ -54,7 +62,7 @@ paths:
         '429':
           description: Exceeded requests limits
       operationId: get-catalog-category
-      description: Returns the selected category
+      description: Returns the selected category. Max. 1x request(s) in 5 s period.
       parameters:
         - schema:
             type: integer
