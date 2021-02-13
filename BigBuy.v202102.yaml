@@ -1,0 +1,50 @@
+openapi: 3.0.0
+info:
+  title: BigBuy
+  version: '1.0'
+  description: ''
+servers:
+  - url: 'https://api.bigbuy.eu/'
+    description: Production endpoint
+  - url: 'https://api.sandbox.bigbuy.eu/'
+    description: Sandbox endpoint
+paths:
+  '/rest/catalog/categories.{_format}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses: {}
+      operationId: get-rest-catalog-categories
+      description: Lists all categories
+      parameters:
+        - schema:
+            type: string
+            default: application/json
+          in: header
+          name: Accept
+        - schema:
+            type: string
+            default: de
+            example: de
+          in: query
+          name: isoCode
+    parameters:
+      - schema:
+          type: string
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+        name: _format
+        in: path
+        required: true
+components:
+  schemas: {}
+  securitySchemes:
+    API_KEY:
+      type: http
+      scheme: bearer
+security:
+  - API_KEY: []
