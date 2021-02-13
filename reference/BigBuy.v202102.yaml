@@ -1,7 +1,7 @@
 openapi: 3.0.0
 info:
   title: BigBuy
-  version: '1.0'
+  version: 'v202102'
   description: ''
 servers:
   - url: 'https://api.bigbuy.eu/'
@@ -29,6 +29,52 @@ paths:
           in: query
           name: isoCode
     parameters:
+      - schema:
+          type: string
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+        name: _format
+        in: path
+        required: true
+  '/rest/catalog/categories/{id}.{_format}':
+    get:
+      summary: Your GET endpoint
+      tags: []
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when category was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+      operationId: get-catalog-category
+      description: Returns the selected category
+      parameters:
+        - schema:
+            type: integer
+            default: application/json
+          in: header
+          name: Accept
+        - schema:
+            type: string
+            default: de
+            example: de
+          in: query
+          name: isoCode
+          description: The language of the returned data
+    parameters:
+      - schema:
+          type: string
+          pattern: \d+
+        name: id
+        in: path
+        required: true
       - schema:
           type: string
           enum:
