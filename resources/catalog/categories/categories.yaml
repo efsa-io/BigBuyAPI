@@ -15,5 +15,4 @@
     operationId: get-rest-catalog-categories
     description: Lists all categories
     parameters:
-
       - $ref: "#/components/parameters/isoCode"

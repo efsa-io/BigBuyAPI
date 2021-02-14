@@ -9,10 +9,30 @@ servers:
   - url: 'https://api.sandbox.bigbuy.eu'
     description: Sandbox endpoint
 paths:
+  '/rest/catalog/categories.{_format}':
+    get:
+    summary: GET endpoint
+    tags:
+      - categories
+    responses:
+      '200':
+        description: Returned when successful
+      '404':
+        description: Returned when category was not found
+      '415':
+        description: Returned on invalid Content-Type header
+      '429':
+        description: Exceeded requests limits
+    operationId: get-rest-catalog-categories
+    description: Lists all categories
+    parameters:
+      - $ref: "#/components/parameters/isoCode"
+      - $ref: '#/components/parameters/_format'
+
   '/rest/catalog/categories/{id}.{_format}':
     # $ref: "./resources/catalog/categories/category-by-id.yaml" 
     get:
-      summary: Your GET endpoint
+      summary: GET endpoint
       tags:
         - categories
       responses:
@@ -29,6 +49,7 @@ paths:
     parameters:
       - $ref: '#/components/parameters/id'
       - $ref: '#/components/parameters/_format'
+      - $ref: "#/components/parameters/isoCode"
 components:
   schemas: {}
   securitySchemes:
