@@ -1,0 +1,14 @@
+{
+    "workbench.colorTheme": "Monokai",
+    "editor.formatOnSaveMode": "modifications",
+    "editor.formatOnPaste": true,
+    "workbench.startupEditor": "newUntitledFile",
+    "explorer.confirmDragAndDrop": false,
+    "http.proxyStrictSSL": false,
+    "http.proxySupport": "on",
+    "editor.minimap.enabled": false,
+    "explorer.sortOrder": "modified",
+    "search.showLineNumbers": true,
+    "workbench.enableExperiments": false,
+    "http.systemCertificates": false
+}

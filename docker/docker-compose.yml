@@ -1,0 +1,60 @@
+---
+version: "3.7"
+
+networks:
+  traefik: {}
+
+services:
+  traefik:
+    image: "traefik:v2.3.7"
+    restart: unless-stopped
+    security_opt:
+      - no-new-privileges:true
+    ports:
+      - published: 80
+        target: 80
+        protocol: tcp
+        mode: host
+      - published: 443
+        target: 443
+        protocol: tcp
+        mode: host
+      - published: 8080
+        target: 8080
+        protocol: tcp
+        mode: host
+    depends_on:
+      - code
+    networks:
+      traefik: {}
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock:ro
+      - ./traefik/traefik.yml:/etc/traefik/traefik.yml:ro
+    labels:
+      traefik.enable: "false"
+
+  code:
+    build:
+      context: code-server
+      dockerfile: Dockerfile
+    user: ${COMPOSE_UID}:${COMPOSE_GID}
+    networks:
+      traefik: {}
+    volumes:
+      - ${DOCKER_SOCK:-/var/run/docker.sock}:/var/run/docker.sock:ro
+      - ${PWD}/code-server/settings.json:/home/coder/.local/share/code-server/User/settings.json
+      # - ${PWD}/code-server/config.yaml:/home/coder/.config/code-server/config.yaml
+      - ${PWD}/..:/home/coder/project
+    environment:
+      LANG: "de_DE.UTF-8"
+      DOCKER_USER: "${CODE_SERVER_DOCKER_USER}"
+
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.code.rule:
+        PathPrefix(`/`)
+      traefik.http.routers.code.tls: true"
+      traefik.http.routers.code.service: code
+      traefik.http.routers.code.entrypoints: http,https
+      traefik.http.services.code.loadbalancer.server.port: 8080
+      traefik.http.services.code.loadbalancer.server.scheme: http
