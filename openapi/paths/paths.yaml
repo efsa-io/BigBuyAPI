@@ -1,24 +1,74 @@
 ---
-##############
-# ATTRIBUTES #
-##############
-/rest/catalog/attribute/{id}:
+# ATTRIBUTES
+/rest/catalog/attributes.{_format}:
+    $ref: './catalog/attributes/get-catalog-attributes.yaml'
+
+/rest/catalog/attribute/{id}.{_format}:
     $ref: './catalog/attributes/get-catalog-attribute.yaml'
 
-##############
-# CATEGORIES #
-##############
+/rest/catalog/attributealllanguages/{id}.{_format}:
+    $ref: './catalog/attributes/get-catalog-attributealllanguages.yaml'
+
+/rest/catalog/attributegroups.{_format}:
+    $ref: './catalog/attributes/get-catalog-attributegroups.yaml'
+
+/rest/catalog/attributegroup/{id}.{_format}:
+    $ref: './catalog/attributes/get-catalog-attributegroup.yaml'
+
+/rest/catalog/attributegroupalllanguages/{id}.{_format}:
+    $ref: './catalog/attributes/get-catalog-attributegroupalllanguages.yaml'
+
+# CATEGORIES
 /rest/catalog/categories.{_format}:
     $ref: './catalog/categories/get-catalog-categories.yaml'
 
 /rest/catalog/category/{id}.{_format}:
     $ref: './catalog/categories/get-catalog-category.yaml'
 
-############
-# PRODUCTS #
-############
+/rest/catalog/categoryalllanguages/{id}.{_format}:
+    $ref: './catalog/categories/get-catalog-categoryalllanguages.yaml'
+
+# LANGUAGES
+/rest/catalog/languages.{_format}:
+    $ref: './catalog/languages/get-catalog-languages.yaml'
+
+# MANUFACTURERS
+/rest/catalog/manufacturers.{_format}:
+    $ref: './catalog/manufacturers/get-catalog-manufacturers.yaml'
+
+/rest/catalog/manufacturer/{id}.{_format}:
+    $ref: './catalog/manufacturers/get-catalog-manufacturer.yaml'
+
+# PRODUCTS
 /rest/catalog/products.{_format}:
     $ref: './catalog/products/get-catalog-products.yaml'
 
-/rest/catalog/products/{id}.{_format}:
+/rest/catalog/product/{id}.{_format}:
     $ref: './catalog/products/get-catalog-product.yaml'
+
+/rest/catalog/productcategories/{id}.{_format}:
+    $ref: './catalog/products/get-catalog-productcategories.yaml'
+
+/rest/catalog/productimages/{id}.{_format}:
+    $ref: './catalog/products/get-catalog-productimages.yaml'
+
+/rest/catalog/productinformation/{id}.{_format}:
+    $ref: './catalog/products/get-catalog-productinformation.yaml'
+
+/rest/catalog/productinformationalllanguages/{id}.{_format}:
+    $ref: './catalog/products/get-catalog-productinformationalllanguages.yaml'
+
+/rest/catalog/productinformationbysku/{sku}.{_format}:
+    $ref: './catalog/products/get-catalog-productinformationbysku.yaml'
+
+/rest/catalog/productsinformation.{_format}:
+    $ref: './catalog/products/get-catalog-productsinformation.yaml'
+
+/rest/catalog/productsstock.{_format}:
+    $ref: './catalog/products/get-catalog-productsstock.yaml'
+
+/rest/catalog/productsstockavailable.{_format}:
+    $ref: './catalog/products/get-catalog-productsstockavailable.yaml'
+
+/rest/catalog/productsstockbyreference:
+    $ref: './catalog/products/get-catalog-productsstockbyreference.yaml'

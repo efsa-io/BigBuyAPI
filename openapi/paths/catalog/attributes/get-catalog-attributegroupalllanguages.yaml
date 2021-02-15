@@ -1,8 +1,8 @@
 ---
 get:
-  operationId: get-catalog-attribute
-  summary: "Get a single attribute"
-  description: "Rate limit: 1 request(s) in 5 second(s)"
+  operationId: get-catalog-attributegroupalllanguages
+  summary: "Get all languages of a single attribute group"
+  description: "Rate limit: 1 request(s) in 1 second(s)"
 
   tags:
     - Catalog API
@@ -17,4 +17,3 @@ parameters:
   - $ref: "../../../build.yaml#/components/parameters/_format"
 
   # query parameters
-  - $ref: "../../../build.yaml#/components/parameters/isoCode"

@@ -1,7 +1,7 @@
 ---
 get:
-  operationId: get-catalog-products
-  summary: "Returns all products"
+  operationId: get-catalog-productsstockavailable
+  summary: Returns all products with available stock
   description: "Rate limit: 10 request(s) in 3600 second(s)"
 
   tags:
@@ -13,10 +13,8 @@ get:
 
 parameters:
   # path parameters
-  - $ref: "../../../build.yaml#/components/parameters/id"
   - $ref: "../../../build.yaml#/components/parameters/_format"
 
   # query parameters
-  - $ref: "../../../build.yaml#/components/parameters/isoCode"
-  - $ref: "../../../build.yaml#/components/parameters/pageSize"
   - $ref: "../../../build.yaml#/components/parameters/page"
+  - $ref: "../../../build.yaml#/components/parameters/pageSize"

@@ -1,8 +1,8 @@
 ---
 get:
-  operationId: get-catalog-attribute
-  summary: "Get a single attribute"
-  description: "Rate limit: 1 request(s) in 5 second(s)"
+  operationId: get-catalog-attribute-group
+  summary: "Get a single attribute group"
+  description: "Rate limit: 1 request(s) in 1 second(s)"
 
   tags:
     - Catalog API

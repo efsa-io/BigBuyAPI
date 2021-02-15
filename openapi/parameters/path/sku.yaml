@@ -1,0 +1,6 @@
+---
+name: sku
+in: path
+required: true
+schema:
+  type: string

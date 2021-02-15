@@ -1,7 +1,7 @@
 ---
 get:
-  operationId: get-catalog-attribute
-  summary: "Get a single attribute"
+  operationId: get-catalog-productinformationalllanguages
+  summary: Get a single product
   description: "Rate limit: 1 request(s) in 5 second(s)"
 
   tags:
@@ -15,6 +15,3 @@ parameters:
   # path parameters
   - $ref: "../../../build.yaml#/components/parameters/id"
   - $ref: "../../../build.yaml#/components/parameters/_format"
-
-  # query parameters
-  - $ref: "../../../build.yaml#/components/parameters/isoCode"

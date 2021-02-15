@@ -1,6 +1,6 @@
 ---
 get:
-  operationId: get-catalog-categories
+  operationId: get-catalog-categoryalllanguages
   summary: "Lists all categories"
   description: "Rate limit: 24 request(s) in 3600 second(s)"
 
@@ -13,7 +13,6 @@ get:
 
 parameters:
   # path parameters
-  - $ref: '../../../build.yaml#/components/parameters/isoCode'
   - $ref: '../../../build.yaml#/components/parameters/_format'
 
   # query parameters

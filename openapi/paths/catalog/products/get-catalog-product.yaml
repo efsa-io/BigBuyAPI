@@ -1,19 +1,20 @@
 ---
 get:
   operationId: get-catalog-product
-  summary: GET endpoint
-  description: Returns the selected product
+  summary: Returns the selected product
+  description: "Rate limit: 1 request(s) in 5 second(s)"
+
   tags:
-    - products
+    - Catalog API
 
   responses: {
     $ref: "../../../responses/responses.yaml"
   }
 
-  parameters:
-    - $ref: "../../../build.yaml#/components/parameters/isoCode"
-
 parameters:
-  # path
+  # path parameters
   - $ref: "../../../build.yaml#/components/parameters/id"
   - $ref: "../../../build.yaml#/components/parameters/_format"
+
+  # query parameters
+  - $ref: '../../../build.yaml#/components/parameters/isoCode'

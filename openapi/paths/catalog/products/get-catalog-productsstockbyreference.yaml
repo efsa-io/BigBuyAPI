@@ -1,0 +1,16 @@
+---
+post:
+  operationId: get-catalog-productsstockbyreference
+  summary: Returns all selected products stock
+  description: "Rate limit: 25 request(s) in 3600 second(s)"
+
+  tags:
+    - Catalog API
+
+  responses: {
+    $ref: "../../../responses/responses.yaml"
+  }
+
+parameters:
+  # path parameters
+  - $ref: "../../../build.yaml#/components/parameters/_format"

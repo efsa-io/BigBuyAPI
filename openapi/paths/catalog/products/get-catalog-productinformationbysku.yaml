@@ -1,7 +1,7 @@
 ---
 get:
-  operationId: get-catalog-attribute
-  summary: "Get a single attribute"
+  operationId: get-catalog-productinformationbysku
+  summary: Get a single product by sku
   description: "Rate limit: 1 request(s) in 5 second(s)"
 
   tags:
@@ -13,7 +13,7 @@ get:
 
 parameters:
   # path parameters
-  - $ref: "../../../build.yaml#/components/parameters/id"
+  - $ref: "../../../build.yaml#/components/parameters/sku"
   - $ref: "../../../build.yaml#/components/parameters/_format"
 
   # query parameters

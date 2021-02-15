@@ -1,0 +1,16 @@
+---
+get:
+  operationId: get-catalog-manufacturers
+  summary: "Returns all manufacturers"
+  description: "Rate limit: 5 request(s) in 3600 second(s)"
+
+  tags:
+    - Catalog API
+
+  responses: {
+    $ref: "../../../responses/responses.yaml"
+  }
+
+parameters:
+  # path parameters
+  - $ref: "../../../build.yaml#/components/parameters/_format"

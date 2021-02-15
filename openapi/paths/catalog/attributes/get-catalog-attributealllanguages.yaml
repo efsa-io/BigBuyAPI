@@ -1,7 +1,7 @@
 ---
 get:
-  operationId: get-catalog-attribute
-  summary: "Get a single attribute"
+  operationId: get-catalog-attribute-languages
+  summary: "Get languages of a single attribute"
   description: "Rate limit: 1 request(s) in 5 second(s)"
 
   tags:

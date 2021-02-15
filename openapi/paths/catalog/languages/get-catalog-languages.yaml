@@ -1,0 +1,16 @@
+---
+get:
+  operationId: get-catalog-languages
+  summary: "Returns all languages"
+  description: "Rate limit: 10 request(s) in 3600 second(s)"
+
+  tags:
+    - Catalog API
+
+  responses: {
+    $ref: "../../../responses/responses.yaml"
+  }
+
+parameters:
+  # path parameters
+  - $ref: '../../../build.yaml#/components/parameters/_format'

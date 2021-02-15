@@ -6,6 +6,9 @@ _format:
 id:
   $ref: './path/id.yaml'
 
+sku:
+  $ref: './path/sku.yaml'
+
 # header
 accept:
   $ref: './header/accept.yaml'

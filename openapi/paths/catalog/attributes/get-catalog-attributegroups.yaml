@@ -1,8 +1,8 @@
 ---
 get:
-  operationId: get-catalog-attribute
-  summary: "Get a single attribute"
-  description: "Rate limit: 1 request(s) in 5 second(s)"
+  operationId: get-catalog-attribute-groups
+  summary: "Lists all attribute groups"
+  description: "Rate limit: 24 request(s) in 3600 second(s)"
 
   tags:
     - Catalog API
@@ -13,7 +13,6 @@ get:
 
 parameters:
   # path parameters
-  - $ref: "../../../build.yaml#/components/parameters/id"
   - $ref: "../../../build.yaml#/components/parameters/_format"
 
   # query parameters

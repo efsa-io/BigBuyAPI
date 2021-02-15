@@ -9,13 +9,13 @@ servers:
   - url: 'https://api.sandbox.bigbuy.eu'
     description: Sandbox endpoint
 paths:
-  '/rest/catalog/attribute/{id}':
+  '/rest/catalog/attributes.{_format}':
     get:
-      operationId: get-catalog-attribute-by-id
-      summary: GET endpoint
-      description: Get a single attribute
+      operationId: get-catelog-attributes
+      summary: Lists all attributes
+      description: 'Rate limit: 24 request(s) in 3600 second(s)'
       tags:
-        - attributes
+        - Catalog API
       responses:
         '200':
           description: Returned when successful
@@ -25,15 +25,196 @@ paths:
           description: Returned on invalid Content-Type header
         '429':
           description: Exceeded requests limits
-      parameters:
-        - name: isoCode
-          in: query
-          required: false
-          schema:
-            type: string
-            default: de
-            example: de
-            description: The language of the returned data
+    parameters:
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
+  '/rest/catalog/attribute/{id}.{_format}':
+    get:
+      operationId: get-catalog-attribute
+      summary: Get a single attribute
+      description: 'Rate limit: 1 request(s) in 5 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
+  '/rest/catalog/attributealllanguages/{id}.{_format}':
+    get:
+      operationId: get-catalog-attribute-languages
+      summary: Get languages of a single attribute
+      description: 'Rate limit: 1 request(s) in 5 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
+  '/rest/catalog/attributegroups.{_format}':
+    get:
+      operationId: get-catalog-attribute-groups
+      summary: Lists all attribute groups
+      description: 'Rate limit: 24 request(s) in 3600 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
+  '/rest/catalog/attributegroup/{id}.{_format}':
+    get:
+      operationId: get-catalog-attribute-group
+      summary: Get a single attribute group
+      description: 'Rate limit: 1 request(s) in 1 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
+  '/rest/catalog/attributegroupalllanguages/{id}.{_format}':
+    get:
+      operationId: get-catalog-attributegroupalllanguages
+      summary: Get all languages of a single attribute group
+      description: 'Rate limit: 1 request(s) in 1 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
     parameters:
       - name: id
         in: path
@@ -53,10 +234,10 @@ paths:
   '/rest/catalog/categories.{_format}':
     get:
       operationId: get-catalog-categories
-      summary: GET endpoint
-      description: Lists all categories
+      summary: Lists all categories
+      description: 'Rate limit: 24 request(s) in 3600 second(s)'
       tags:
-        - categories
+        - Catalog API
       responses:
         '200':
           description: Returned when successful
@@ -66,15 +247,6 @@ paths:
           description: Returned on invalid Content-Type header
         '429':
           description: Exceeded requests limits
-      parameters:
-        - name: isoCode
-          in: query
-          required: false
-          schema:
-            type: string
-            default: de
-            example: de
-            description: The language of the returned data
     parameters:
       - name: isoCode
         in: query
@@ -94,13 +266,21 @@ paths:
             - html
           example: json
           default: json
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
   '/rest/catalog/category/{id}.{_format}':
     get:
       operationId: get-catalog-category
-      summary: GET endpoint
-      description: Returns the selected category
+      summary: Returns the selected category
+      description: 'Rate limit: 1 request(s) in 5 second(s)'
       tags:
-        - categories
+        - Catalog API
       responses:
         '200':
           description: Returned when successful
@@ -110,15 +290,6 @@ paths:
           description: Returned on invalid Content-Type header
         '429':
           description: Exceeded requests limits
-      parameters:
-        - name: isoCode
-          in: query
-          required: false
-          schema:
-            type: string
-            default: de
-            example: de
-            description: The language of the returned data
     parameters:
       - name: id
         in: path
@@ -143,13 +314,13 @@ paths:
           default: de
           example: de
           description: The language of the returned data
-  '/rest/catalog/products.{_format}':
+  '/rest/catalog/categoryalllanguages/{id}.{_format}':
     get:
-      operationId: get-catalog-products
-      summary: GET endpoint
-      description: Returns all products
+      operationId: get-catalog-categoryalllanguages
+      summary: Lists all categories
+      description: 'Rate limit: 24 request(s) in 3600 second(s)'
       tags:
-        - products
+        - Catalog API
       responses:
         '200':
           description: Returned when successful
@@ -159,15 +330,122 @@ paths:
           description: Returned on invalid Content-Type header
         '429':
           description: Exceeded requests limits
-      parameters:
-        - name: isoCode
-          in: query
-          required: false
-          schema:
-            type: string
-            default: de
-            example: de
-            description: The language of the returned data
+    parameters:
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
+  '/rest/catalog/languages.{_format}':
+    get:
+      operationId: get-catalog-languages
+      summary: Returns all languages
+      description: 'Rate limit: 10 request(s) in 3600 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+  '/rest/catalog/manufacturers.{_format}':
+    get:
+      operationId: get-catalog-manufacturers
+      summary: Returns all manufacturers
+      description: 'Rate limit: 5 request(s) in 3600 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+  '/rest/catalog/manufacturer/{id}.{_format}':
+    get:
+      operationId: get-catalog-manufacturer
+      summary: Get a single manufacturer
+      description: 'Rate limit: 1 request(s) in 5 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+  '/rest/catalog/products.{_format}':
+    get:
+      operationId: get-catalog-products
+      summary: Returns all products
+      description: 'Rate limit: 10 request(s) in 3600 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
     parameters:
       - name: id
         in: path
@@ -204,13 +482,13 @@ paths:
         required: true
         schema:
           type: integer
-  '/rest/catalog/products/{id}.{_format}':
+  '/rest/catalog/product/{id}.{_format}':
     get:
       operationId: get-catalog-product
-      summary: GET endpoint
-      description: Returns the selected product
+      summary: Returns the selected product
+      description: 'Rate limit: 1 request(s) in 5 second(s)'
       tags:
-        - products
+        - Catalog API
       responses:
         '200':
           description: Returned when successful
@@ -220,21 +498,348 @@ paths:
           description: Returned on invalid Content-Type header
         '429':
           description: Exceeded requests limits
-      parameters:
-        - name: isoCode
-          in: query
-          required: false
-          schema:
-            type: string
-            default: de
-            example: de
-            description: The language of the returned data
     parameters:
       - name: id
         in: path
         required: true
         schema:
           type: integer
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
+  '/rest/catalog/productcategories/{id}.{_format}':
+    get:
+      operationId: get-catalog-productcategories
+      summary: Get product categories
+      description: 'Rate limit: 1 request(s) in 5 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+  '/rest/catalog/productimages/{id}.{_format}':
+    get:
+      operationId: get-catalog-productimages
+      summary: Get a single product images
+      description: 'Rate limit: 1 request(s) in 5 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+  '/rest/catalog/productinformation/{id}.{_format}':
+    get:
+      operationId: get-catalog-productinformation
+      summary: Get a single product
+      description: 'Rate limit: 1 request(s) in 5 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
+  '/rest/catalog/productinformationalllanguages/{id}.{_format}':
+    get:
+      operationId: get-catalog-productinformationalllanguages
+      summary: Get a single product
+      description: 'Rate limit: 1 request(s) in 5 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+  '/rest/catalog/productinformationbysku/{sku}.{_format}':
+    get:
+      operationId: get-catalog-productinformationbysku
+      summary: Get a single product by sku
+      description: 'Rate limit: 1 request(s) in 5 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: sku
+        in: path
+        required: true
+        schema:
+          type: string
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
+  '/rest/catalog/productsinformation.{_format}':
+    get:
+      operationId: get-catalog-productsinformation
+      summary: Returns all products
+      description: 'Rate limit: 24 request(s) in 3600 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
+      - name: page
+        description: Page
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: pageSize
+        description: Page size
+        in: query
+        required: true
+        schema:
+          type: integer
+  '/rest/catalog/productsstock.{_format}':
+    get:
+      operationId: get-catalog-productsstock
+      summary: Returns all products stock
+      description: 'Rate limit: 10 request(s) in 3600 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: page
+        description: Page
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: pageSize
+        description: Page size
+        in: query
+        required: true
+        schema:
+          type: integer
+  '/rest/catalog/productsstockavailable.{_format}':
+    get:
+      operationId: get-catalog-productsstockavailable
+      summary: Returns all products with available stock
+      description: 'Rate limit: 10 request(s) in 3600 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: page
+        description: Page
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: pageSize
+        description: Page size
+        in: query
+        required: true
+        schema:
+          type: integer
+  /rest/catalog/productsstockbyreference:
+    post:
+      operationId: get-catalog-productsstockbyreference
+      summary: Returns all selected products stock
+      description: 'Rate limit: 25 request(s) in 3600 second(s)'
+      tags:
+        - Catalog API
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+    parameters:
       - name: _format
         in: path
         required: true
@@ -264,6 +869,12 @@ components:
       required: true
       schema:
         type: integer
+    sku:
+      name: sku
+      in: path
+      required: true
+      schema:
+        type: string
     accept:
       name: accept
       in: header

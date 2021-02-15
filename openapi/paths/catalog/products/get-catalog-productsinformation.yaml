@@ -1,8 +1,8 @@
 ---
 get:
-  operationId: get-catalog-attribute
-  summary: "Get a single attribute"
-  description: "Rate limit: 1 request(s) in 5 second(s)"
+  operationId: get-catalog-productsinformation
+  summary: Returns all products
+  description: "Rate limit: 24 request(s) in 3600 second(s)"
 
   tags:
     - Catalog API
@@ -18,3 +18,5 @@ parameters:
 
   # query parameters
   - $ref: "../../../build.yaml#/components/parameters/isoCode"
+  - $ref: "../../../build.yaml#/components/parameters/page"
+  - $ref: "../../../build.yaml#/components/parameters/pageSize"
