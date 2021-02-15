@@ -248,14 +248,11 @@ paths:
         '429':
           description: Exceeded requests limits
     parameters:
-      - name: isoCode
-        in: query
-        required: false
+      - name: id
+        in: path
+        required: true
         schema:
-          type: string
-          default: de
-          example: de
-          description: The language of the returned data
+          type: integer
       - name: _format
         in: path
         required: true
@@ -420,6 +417,11 @@ paths:
         '429':
           description: Exceeded requests limits
     parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       - name: _format
         in: path
         required: true
@@ -603,6 +605,11 @@ paths:
         '429':
           description: Exceeded requests limits
     parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       - name: _format
         in: path
         required: true
@@ -710,11 +717,6 @@ paths:
         '429':
           description: Exceeded requests limits
     parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
       - name: _format
         in: path
         required: true
@@ -823,7 +825,7 @@ paths:
         required: true
         schema:
           type: integer
-  /rest/catalog/productsstockbyreference:
+  '/rest/catalog/productsstockbyreference.{_format}':
     post:
       operationId: get-catalog-productsstockbyreference
       summary: Returns all selected products stock
