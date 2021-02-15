@@ -15,7 +15,7 @@ isoCode:
   $ref: './query/isoCode.yaml'
 
 page:
-  $reg: './query/page.yaml'
+  $ref: './query/page.yaml'
 
 pageSize:
-  $reg: './query/pageSize.yaml'
+  $ref: './query/pageSize.yaml'
