@@ -1,0 +1,19 @@
+---
+get:
+  operationId: get-catalog-products
+  summary: GET endpoint
+  description: Returns all products
+  tags:
+    - products
+
+  responses: {
+    $ref: "../../../responses/responses.yaml"
+  }
+
+  parameters:
+    - $ref: "../../../build.yaml#/components/parameters/isoCode"
+
+parameters:
+  - $ref: "../../../build.yaml#/components/parameters/id"
+  - $ref: "../../../build.yaml#/components/parameters/_format"
+  - $ref: "../../../build.yaml#/components/parameters/isoCode"

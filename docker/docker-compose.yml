@@ -8,8 +8,8 @@ services:
   traefik:
     image: "traefik:v2.3.7"
     restart: unless-stopped
-    security_opt:
-      - no-new-privileges:true
+    # security_opt:
+    #   - no-new-privileges:true
     ports:
       - published: 80
         target: 80
@@ -48,13 +48,62 @@ services:
     environment:
       LANG: "de_DE.UTF-8"
       DOCKER_USER: "${CODE_SERVER_DOCKER_USER}"
-
     labels:
       traefik.enable: "true"
       traefik.http.routers.code.rule:
         PathPrefix(`/`)
-      traefik.http.routers.code.tls: true"
+      # traefik.http.routers.code.tls: "true"
       traefik.http.routers.code.service: code
       traefik.http.routers.code.entrypoints: http,https
       traefik.http.services.code.loadbalancer.server.port: 8080
       traefik.http.services.code.loadbalancer.server.scheme: http
+      # traefik.http.routers.code.middlewares: code-stripprefix@docker
+      # traefik.http.middlewares.code-stripprefix.stripprefix.prefixes: /code
+      # traefik.http.middlewares.code-addprefix.addprefix.prefix: /code
+
+  swagger-ui:
+    # image: swaggerapi/swagger-ui
+    build:
+      context: swagger-ui
+      dockerfile: Dockerfile
+    volumes:
+      - ${PWD}/../openapi:/usr/share/nginx/html/openapi
+    environment:
+      API_URL: openapi/bigbuy.yaml
+    networks:
+      traefik: {}
+    ## Error: ENOENT: no such file or directory, open '/usr/share/nginx/html/usr/share/nginx/html/index.html'
+    # working_dir: "/usr/share/nginx/html"
+    labels:
+      traefik.enable: "true"
+      traefik.http.routers.swagger.rule:
+        PathPrefix(`/swagger`)
+      traefik.http.routers.swagger.tls: true"
+      traefik.http.routers.swagger.service: swagger
+      traefik.http.routers.swagger.entrypoints: http,https
+      traefik.http.services.swagger.loadbalancer.server.port: 8080
+      traefik.http.services.swagger.loadbalancer.server.scheme: http
+      # https://github.com/cdr/code-server/issues/1608#issuecomment-627109454
+      traefik.http.routers.swagger.middlewares: swagger-stripprefix@docker
+      traefik.http.middlewares.swagger-stripprefix.stripprefix.prefixes: /swagger
+
+  # redoc:
+  #   image: redocly/redoc
+  #   volumes:
+  #     - ${PWD}/../swagger:/usr/share/nginx/html/swagger \
+  #   environment:
+  #     SPEC_URL: openapi/api.yaml
+  #   networks:
+  #     traefik: {}
+  #   labels:
+  #     traefik.enable: "true"
+  #     traefik.http.routers.redoc.rule:
+  #       PathPrefix(`/redoc`)
+  #     # traefik.http.routers.redoc.tls: "true"
+  #     traefik.http.routers.redoc.service: redoc
+  #     traefik.http.routers.redoc.entrypoints: http,https
+  #     traefik.http.services.redoc.loadbalancer.server.port: 80
+  #     traefik.http.services.redoc.loadbalancer.server.scheme: http
+  #     traefik.http.routers.redoc.middlewares: redoc-stripprefix@docker
+  #     traefik.http.middlewares.redoc-stripprefix.stripprefix.prefixes: /redoc
+  #     # traefik.http.middlewares.redoc-addprefix.addprefix.prefix: /redoc

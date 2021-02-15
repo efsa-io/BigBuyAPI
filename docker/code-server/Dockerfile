@@ -2,11 +2,13 @@ ARG CODE_SERVER_IMAGE=codercom/code-server:3.8.0
 
 FROM $CODE_SERVER_IMAGE
 
-USER root
-
 USER coder
 
 WORKDIR /home/coder
+
+# RUN npm install -g \
+#         swagger-ui \
+#         redoc
 
 RUN \
     /usr/bin/entrypoint.sh --install-extension 42Crunch.vscode-openapi && \

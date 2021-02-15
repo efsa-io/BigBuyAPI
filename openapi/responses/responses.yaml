@@ -1,0 +1,9 @@
+---
+"200":
+  $ref: "./_default/200.yaml"
+"404":
+  $ref: "./_default/404.yaml"
+"415":
+  $ref: "./_default/415.yaml"
+"429":
+  $ref: "./_default/429.yaml"

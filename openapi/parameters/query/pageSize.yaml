@@ -1,0 +1,7 @@
+---
+name: pageSize
+description: Page size
+in: query
+required: true
+schema:
+  type: integer

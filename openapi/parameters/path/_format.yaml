@@ -1,0 +1,11 @@
+---
+name: _format
+in: path
+required: true
+schema:
+  enum:
+    - json
+    - xml
+    - html
+  example: json
+  default: json

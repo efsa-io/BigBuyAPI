@@ -1,0 +1,19 @@
+---
+get:
+  operationId: get-catalog-category-by-id
+  summary: GET endpoint
+  description: Returns the selected category
+  tags:
+    - categories
+
+  responses: {
+    $ref: "../../../responses/responses.yaml"
+  }
+
+  parameters:
+    - $ref: "../../../build.yaml#/components/parameters/isoCode"
+
+parameters:
+  - $ref: "../../../build.yaml#/components/parameters/id"
+  - $ref: "../../../build.yaml#/components/parameters/_format"
+  - $ref: "../../../build.yaml#/components/parameters/isoCode"

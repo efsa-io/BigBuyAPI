@@ -1,0 +1,7 @@
+{
+    "workbench.colorTheme": "Monokai",
+    "editor.formatOnSaveMode": "modifications",
+    "editor.formatOnPaste": true,
+    "workbench.startupEditor": "newUntitledFile",
+    "explorer.confirmDragAndDrop": false
+}

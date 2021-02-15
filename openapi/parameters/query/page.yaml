@@ -1,0 +1,7 @@
+---
+name: page
+description: Page
+in: query
+required: true
+schema:
+  type: integer

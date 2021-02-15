@@ -1,0 +1,23 @@
+---
+get:
+  operationId: get-catalog-product-by-id
+  summary: GET endpoint
+  description: Returns the selected product
+  tags:
+    - products
+
+  responses: {
+    $ref: "../../../responses/responses.yaml"
+  }
+
+  parameters:
+    - $ref: "../../../build.yaml#/components/parameters/isoCode"
+
+parameters:
+  # path
+  - $ref: "../../../build.yaml#/components/parameters/id"
+  - $ref: "../../../build.yaml#/components/parameters/_format"
+
+  # query
+  - $ref: "../../../build.yaml#/components/parameters/pageSize"
+  - $ref: "../../../build.yaml#/components/parameters/page"

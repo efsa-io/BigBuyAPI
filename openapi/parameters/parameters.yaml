@@ -1,0 +1,21 @@
+---
+# path
+_format:
+  $ref: './path/_format.yaml'
+
+id:
+  $ref: './path/id.yaml'
+
+# header
+accept:
+  $ref: './header/accept.yaml'
+
+# query
+isoCode:
+  $ref: './query/isoCode.yaml'
+
+page:
+  $reg: './query/page.yaml'
+
+pageSize:
+  $reg: './query/pageSize.yaml'

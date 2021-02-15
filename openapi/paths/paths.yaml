@@ -1,0 +1,18 @@
+---
+##############
+# CATEGORIES #
+##############
+/rest/catalog/categories.{_format}:
+    $ref: './catalog/categories/get-catalog-categories.yaml'
+
+/rest/catalog/category/{id}.{_format}:
+    $ref: './catalog/categories/get-catalog-category-by-id.yaml'
+
+############
+# PRODUCTS #
+############
+/rest/catalog/products.{_format}:
+    $ref: './catalog/products/get-catalog-products.yaml'
+
+/rest/catalog/products/{id}.{_format}:
+    $ref: './catalog/products/get-catalog-product-by-id.yaml'

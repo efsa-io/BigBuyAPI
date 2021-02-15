@@ -40,3 +40,8 @@ docker-compose up -d --build
 ```
 
 Open `https://{IP}` in your browser.
+
+
+```
+dc exec swagger-ui sh -c "swagger-cli bundle -r /usr/share/nginx/html/openapi/openapi.yaml --outfile /usr/share/nginx/html/openapi/bigbuy.yaml --type yaml"
+```

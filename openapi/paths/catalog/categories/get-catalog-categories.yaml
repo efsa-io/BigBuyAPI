@@ -1,0 +1,18 @@
+---
+get:
+  operationId: get-catalog-categories
+  summary: GET endpoint
+  description: Lists all categories
+  tags:
+    - categories
+
+  responses: {
+    $ref: "../../../responses/responses.yaml"
+  }
+
+  parameters:
+    - $ref: '../../../build.yaml#/components/parameters/isoCode'
+
+parameters:
+  - $ref: '../../../build.yaml#/components/parameters/isoCode'
+  - $ref: '../../../build.yaml#/components/parameters/_format'

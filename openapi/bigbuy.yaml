@@ -1,0 +1,248 @@
+openapi: 3.0.0
+info:
+  title: BigBuy API
+  version: v202102
+  description: OpenAPI spefication to interact with bigbuy.eu
+servers:
+  - url: 'https://api.bigbuy.eu'
+    description: Production endpoint
+  - url: 'https://api.sandbox.bigbuy.eu'
+    description: Sandbox endpoint
+paths:
+  '/rest/catalog/categories.{_format}':
+    get:
+      operationId: get-catalog-categories
+      summary: GET endpoint
+      description: Lists all categories
+      tags:
+        - categories
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when category was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+      parameters:
+        - name: isoCode
+          in: query
+          required: false
+          schema:
+            type: string
+            default: de
+            example: de
+            description: The language of the returned data
+    parameters:
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+  '/rest/catalog/category/{id}.{_format}':
+    get:
+      operationId: get-catalog-category-by-id
+      summary: GET endpoint
+      description: Returns the selected category
+      tags:
+        - categories
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when category was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+      parameters:
+        - name: isoCode
+          in: query
+          required: false
+          schema:
+            type: string
+            default: de
+            example: de
+            description: The language of the returned data
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
+  '/rest/catalog/products.{_format}':
+    get:
+      operationId: get-catalog-products
+      summary: GET endpoint
+      description: Returns all products
+      tags:
+        - products
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when category was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+      parameters:
+        - name: isoCode
+          in: query
+          required: false
+          schema:
+            type: string
+            default: de
+            example: de
+            description: The language of the returned data
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
+  '/rest/catalog/products/{id}.{_format}':
+    get:
+      operationId: get-catalog-product-by-id
+      summary: GET endpoint
+      description: Returns the selected product
+      tags:
+        - products
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when category was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+      parameters:
+        - name: isoCode
+          in: query
+          required: false
+          schema:
+            type: string
+            default: de
+            example: de
+            description: The language of the returned data
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
+      - name: isoCode
+        in: query
+        required: false
+        schema:
+          type: string
+          default: de
+          example: de
+          description: The language of the returned data
+components:
+  parameters:
+    _format:
+      name: _format
+      in: path
+      required: true
+      schema:
+        enum:
+          - json
+          - xml
+          - html
+        example: json
+        default: json
+    id:
+      name: id
+      in: path
+      required: true
+      schema:
+        type: integer
+    accept:
+      name: accept
+      in: header
+      required: false
+      schema:
+        type: string
+        default: application/json
+    isoCode:
+      name: isoCode
+      in: query
+      required: false
+      schema:
+        type: string
+        default: de
+        example: de
+        description: The language of the returned data
+    page:
+      $reg: ./query/page.yaml
+    pageSize:
+      $reg: ./query/pageSize.yaml
+  schemas: {}
+  securitySchemes:
+    API_KEY:
+      type: http
+      scheme: bearer
+security:
+  - API_KEY: []

@@ -1,0 +1,9 @@
+---
+name: isoCode
+in: query
+required: false
+schema:
+  type: string
+  default: de
+  example: de
+  description: The language of the returned data
