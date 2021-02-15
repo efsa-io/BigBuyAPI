@@ -1,10 +1,10 @@
 ---
 get:
-  operationId: get-catalog-category-by-id
+  operationId: get-catalog-attribute-by-id
   summary: GET endpoint
-  description: Returns the selected category
+  description: Get a single attribute
   tags:
-    - categories
+    - attributes
 
   responses: {
     $ref: "../../../responses/responses.yaml"
@@ -14,6 +14,6 @@ get:
     - $ref: "../../../build.yaml#/components/parameters/isoCode"
 
 parameters:
+  # path
   - $ref: "../../../build.yaml#/components/parameters/id"
   - $ref: "../../../build.yaml#/components/parameters/_format"
-  - $ref: "../../../build.yaml#/components/parameters/isoCode"

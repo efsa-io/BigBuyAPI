@@ -1,10 +1,10 @@
 ---
 get:
-  operationId: get-catalog-products
+  operationId: get-catalog-category
   summary: GET endpoint
-  description: Returns all products
+  description: Returns the selected category
   tags:
-    - products
+    - categories
 
   responses: {
     $ref: "../../../responses/responses.yaml"
@@ -14,11 +14,6 @@ get:
     - $ref: "../../../build.yaml#/components/parameters/isoCode"
 
 parameters:
-  # path
   - $ref: "../../../build.yaml#/components/parameters/id"
   - $ref: "../../../build.yaml#/components/parameters/_format"
-
-  # query
   - $ref: "../../../build.yaml#/components/parameters/isoCode"
-  - $ref: "../../../build.yaml#/components/parameters/pageSize"
-  - $ref: "../../../build.yaml#/components/parameters/page"

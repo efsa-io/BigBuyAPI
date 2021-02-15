@@ -9,6 +9,47 @@ servers:
   - url: 'https://api.sandbox.bigbuy.eu'
     description: Sandbox endpoint
 paths:
+  '/rest/catalog/attribute/{id}':
+    get:
+      operationId: get-catalog-attribute-by-id
+      summary: GET endpoint
+      description: Get a single attribute
+      tags:
+        - attributes
+      responses:
+        '200':
+          description: Returned when successful
+        '404':
+          description: Returned when requested object was not found
+        '415':
+          description: Returned on invalid Content-Type header
+        '429':
+          description: Exceeded requests limits
+      parameters:
+        - name: isoCode
+          in: query
+          required: false
+          schema:
+            type: string
+            default: de
+            example: de
+            description: The language of the returned data
+    parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
+      - name: _format
+        in: path
+        required: true
+        schema:
+          enum:
+            - json
+            - xml
+            - html
+          example: json
+          default: json
   '/rest/catalog/categories.{_format}':
     get:
       operationId: get-catalog-categories
@@ -20,7 +61,7 @@ paths:
         '200':
           description: Returned when successful
         '404':
-          description: Returned when category was not found
+          description: Returned when requested object was not found
         '415':
           description: Returned on invalid Content-Type header
         '429':
@@ -55,7 +96,7 @@ paths:
           default: json
   '/rest/catalog/category/{id}.{_format}':
     get:
-      operationId: get-catalog-category-by-id
+      operationId: get-catalog-category
       summary: GET endpoint
       description: Returns the selected category
       tags:
@@ -64,7 +105,7 @@ paths:
         '200':
           description: Returned when successful
         '404':
-          description: Returned when category was not found
+          description: Returned when requested object was not found
         '415':
           description: Returned on invalid Content-Type header
         '429':
@@ -113,7 +154,7 @@ paths:
         '200':
           description: Returned when successful
         '404':
-          description: Returned when category was not found
+          description: Returned when requested object was not found
         '415':
           description: Returned on invalid Content-Type header
         '429':
@@ -151,9 +192,21 @@ paths:
           default: de
           example: de
           description: The language of the returned data
+      - name: pageSize
+        description: Page size
+        in: query
+        required: true
+        schema:
+          type: integer
+      - name: page
+        description: Page
+        in: query
+        required: true
+        schema:
+          type: integer
   '/rest/catalog/products/{id}.{_format}':
     get:
-      operationId: get-catalog-product-by-id
+      operationId: get-catalog-product
       summary: GET endpoint
       description: Returns the selected product
       tags:
@@ -162,7 +215,7 @@ paths:
         '200':
           description: Returned when successful
         '404':
-          description: Returned when category was not found
+          description: Returned when requested object was not found
         '415':
           description: Returned on invalid Content-Type header
         '429':
@@ -192,14 +245,6 @@ paths:
             - html
           example: json
           default: json
-      - name: isoCode
-        in: query
-        required: false
-        schema:
-          type: string
-          default: de
-          example: de
-          description: The language of the returned data
 components:
   parameters:
     _format:
@@ -236,9 +281,19 @@ components:
         example: de
         description: The language of the returned data
     page:
-      $reg: ./query/page.yaml
+      name: page
+      description: Page
+      in: query
+      required: true
+      schema:
+        type: integer
     pageSize:
-      $reg: ./query/pageSize.yaml
+      name: pageSize
+      description: Page size
+      in: query
+      required: true
+      schema:
+        type: integer
   schemas: {}
   securitySchemes:
     API_KEY:

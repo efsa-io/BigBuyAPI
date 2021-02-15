@@ -1,12 +1,18 @@
 ---
 ##############
+# ATTRIBUTES #
+##############
+/rest/catalog/attribute/{id}:
+    $ref: './catalog/attributes/get-catalog-attribute.yaml'
+
+##############
 # CATEGORIES #
 ##############
 /rest/catalog/categories.{_format}:
     $ref: './catalog/categories/get-catalog-categories.yaml'
 
 /rest/catalog/category/{id}.{_format}:
-    $ref: './catalog/categories/get-catalog-category-by-id.yaml'
+    $ref: './catalog/categories/get-catalog-category.yaml'
 
 ############
 # PRODUCTS #
@@ -15,4 +21,4 @@
     $ref: './catalog/products/get-catalog-products.yaml'
 
 /rest/catalog/products/{id}.{_format}:
-    $ref: './catalog/products/get-catalog-product-by-id.yaml'
+    $ref: './catalog/products/get-catalog-product.yaml'
