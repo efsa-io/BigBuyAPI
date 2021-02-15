@@ -13,4 +13,5 @@ get:
 
 parameters:
   # path parameters
+  - $ref: "../../../build.yaml#/components/parameters/id"
   - $ref: "../../../build.yaml#/components/parameters/_format"

@@ -70,5 +70,5 @@
 /rest/catalog/productsstockavailable.{_format}:
     $ref: './catalog/products/get-catalog-productsstockavailable.yaml'
 
-/rest/catalog/productsstockbyreference:
+/rest/catalog/productsstockbyreference.{_format}:
     $ref: './catalog/products/get-catalog-productsstockbyreference.yaml'
