@@ -248,11 +248,6 @@ paths:
         '429':
           description: Exceeded requests limits
     parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
       - name: _format
         in: path
         required: true
@@ -328,6 +323,11 @@ paths:
         '429':
           description: Exceeded requests limits
     parameters:
+      - name: id
+        in: path
+        required: true
+        schema:
+          type: integer
       - name: _format
         in: path
         required: true
@@ -449,11 +449,6 @@ paths:
         '429':
           description: Exceeded requests limits
     parameters:
-      - name: id
-        in: path
-        required: true
-        schema:
-          type: integer
       - name: _format
         in: path
         required: true
